@@ -5,11 +5,13 @@ const path =require('path');
 const usuariosmodel = require('./Models/Usuarios'); 
 const {
   DB_USER, DB_PASSWORD, DB_HOST,
+  DB_DEPLOY
 } = process.env;
+const db_deploy = DB_DEPLOY ? DB_DEPLOY : `postgres:${DB_USER}:${DB_PASSWORD}@${DB_HOST}/trabajarsalta`;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/dolarkey`, {
-  logging: false, // set to console.log to see the raw SQL queries
-  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+const sequelize = new Sequelize(db_deploy, {
+    logging: false, // set to console.log to see the raw SQL queries
+    native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
 const basename = path.basename(__filename);
 
