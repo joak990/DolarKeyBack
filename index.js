@@ -13,9 +13,9 @@ let previousDollarValue = 422;
 const intervalDuration = 30 * 1000;
 let previousDollarcompra = null;
 conn.sync({ alter: true }).then(() => {
-  server.listen(PORT, async () => {
-    console.log("%s listening at 3001"); // eslint-disable-line no-console
-  });
+  server.listen(process.env.PORT, () => {
+    console.log("Listening in port", process.env.PORT)
+})
 });
 
 server.use(cookieParser());
@@ -78,7 +78,7 @@ server.post("/newsletter", async (req, res) => {
         <p>¡Gracias por suscribirte a la newsletter de Dolarkey! Estarás al tanto de las últimas noticias y movimientos del dólar.</p>
         <p>¡Bienvenido/a a nuestra comunidad!</p>
         <button style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px;">
-          <a href="https://www.dolarkey.com" style="text-decoration: none; color: white;">Visita nuestra página web</a>
+          <a href="https://dolarkey.vercel.app/" style="text-decoration: none; color: white;">Visita nuestra página web</a>
         </button>
         <p>Saludos,<br>El equipo de Dolarkey</p>
       </body>
@@ -113,8 +113,8 @@ console.log(previousDollarcompra);;
         const email = user.email;
         const message = `¡Atención! El valor del dólar blue ha sufrido cambios  en DolarKey.
 Nuevo valor: compra - ${previousDollarcompra} venta - ${dollarValue} 
-No pierdas la oportunidad de estar al tanto de las fluctuaciones del dólar en tiempo real. Únete a DolarKey ahora y recibe actualizaciones instantáneas sobre los cambios en el mercado cambiario.
-¡No te quedes atrás! Mantente informado y toma decisiones financieras acertadas con DolarKey. Regístrate hoy mismo en nuestro sitio web y comienza a aprovechar todas las ventajas que ofrecemos.
+No pierdas la oportunidad de estar al tanto de las fluctuaciones del dólar en tiempo real. 
+¡No te quedes atrás! Mantente informado y toma decisiones financieras acertadas con DolarKey. 
 ¡DolarKey, tu aliado confiable en el mundo del dólar!`;
 
         const mailOptions = {
